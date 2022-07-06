@@ -55,11 +55,23 @@ for (let id of idArray) {
         let weightDiv = document.createElement('div');
         weightDiv.classList.add('weight');
         let cryDiv = document.createElement('div');
-        cryDiv.classList.add('cry');
+        cryDiv.classList.add('cryDiv');
         barOne.append(nameDiv);
         barOne.append(heightDiv);
         barOne.append(weightDiv);
         barOne.append(cryDiv);
+
+        // Cry Button
+        let cryButton = document.createElement('input');
+        cryButton.classList.add('cryButton');
+        cryButton.setAttribute('type', 'image');
+        cryButton.src = 'Images/transparent-speaker-icon-7.jpeg'
+        cryDiv.append(cryButton);
+
+        cryButton.addEventListener('click', () => {
+            let audio = new Audio(`Gen 1 Cries/${id}.flac`);
+            audio.play();
+        })
 
         // Inner Text for Bar One
         nameDiv.innerText = `#${id} ${pokemonName}`;
@@ -101,9 +113,10 @@ for (let id of idArray) {
         
 
         // For obtaining description;
-    //   return fetch(data.species.url).then((response) => response.json()).then(species => {
-        
-    //   });
+      return fetch(data.species.url).then((response) => response.json()).then(species => {
+        let pokemonDescription = species.flavor_text_entries[15].flavor_text;
+        description.innerText = pokemonDescription;
+      });
     });
 }
 

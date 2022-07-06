@@ -77,11 +77,17 @@ html {
     text-align: center;
 }
 
-.cry {
+.cryDiv {
+    display: flex;
+    justify-content: center;
     width: 25%;
     border: 1px black;
     border-style: dotted;
     box-sizing: border-box;
+}
+
+.cryButton {
+    width: 50px;
 }
 
 .barTwo {
@@ -123,4 +129,5 @@ html {
     border-style: dotted;
     box-sizing: border-box;
     text-align: center;
+    padding-top: 20px;
 }
