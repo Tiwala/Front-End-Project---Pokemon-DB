@@ -1,7 +1,7 @@
 const container = document.body.querySelector('.container')
 
 // Weight is in Hectograms, so divide by 10 for KG
-// Height is in Decimeters, so divide by 10 for centimeters
+// Height is in Decimeters, so multiply by 10 for centimeters
 
 const idArray = [...Array(151).keys()].map((id) => id + 1);
 
@@ -11,12 +11,19 @@ for (let id of idArray) {
     .then(() => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`))
     .then((response) => response.json())
     .then((data) => {
-        console.log(id);
+        // console.log(id);
 
         // Constants to access Pokemon Data
         const pokemonName = data.name[0].toUpperCase() + data.name.slice(1).toLowerCase();
         const pokemonImg = data.sprites.other['official-artwork'].front_default;
-        
+        const pokemonHeight = ((data.height) * 10);
+        const pokemonWeight = ((data.weight)/10)
+        const pokemonAbility = data.abilities[0].ability.name[0].toUpperCase() + data.abilities[0].ability.name.slice(1).toLowerCase();
+        const pokemonTypeOne = data.types[0].type.name[0].toUpperCase() + data.types[0].type.name.slice(1);
+        // const pokemonTypeTwo = data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1).toLowerCase();
+        // console.log(pokemonTypeOne)
+
+
         // DOM creation sequence for root div, image + name section
         let newPokemon = document.createElement('div')
         newPokemon.classList.add('pokemon');
@@ -53,6 +60,11 @@ for (let id of idArray) {
         barOne.append(heightDiv);
         barOne.append(weightDiv);
         barOne.append(cryDiv);
+
+        // Inner Text for Bar One
+        nameDiv.innerText = `#${id} ${pokemonName}`;
+        heightDiv.innerText = `Height: ${pokemonHeight} Kg`;
+        weightDiv.innerText = `Weight: ${pokemonWeight} cm`;
         
 
         // Bar Two, contains Ability, Types
@@ -68,6 +80,14 @@ for (let id of idArray) {
         barTwo.append(abilityDiv);
         barTwo.append(typeDiv);
 
+        // Inner Text for Bar Two
+        abilityDiv.innerText = `Ability: ${pokemonAbility}`;
+        typeDiv.innerText = pokemonTypeOne;
+        if (data.types[1] != undefined) {
+            let pokemonTypeTwo = data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1).toLowerCase();
+            typeDiv.innerText = `${pokemonTypeOne}/${pokemonTypeTwo}`;
+        }
+
         // Bar Three
         let barThree = document.createElement('div');
         barThree.classList.add('barThree');
@@ -78,6 +98,7 @@ for (let id of idArray) {
         description.classList.add('description');
         barThree.append(description);
 
+        
 
         // For obtaining description;
     //   return fetch(data.species.url).then((response) => response.json()).then(species => {
