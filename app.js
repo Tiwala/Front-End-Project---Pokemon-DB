@@ -3,6 +3,29 @@ const userForm = document.getElementById('user-form');
 const input = document.body.querySelector('input');
 const logo = document.body.querySelector('.logo');
 
+const typeObj = {
+  Bug: '#94BC4A',
+  Dark: '#736C75',
+  Dragon: '#6A7BAF',
+  Electric: '#E5C531',
+  Fairy: '#E397D1',
+  Fighting: '#CB5F48',
+  Fire: '#EA7A3C',
+  Flying: '#7DA6DE',
+  Ghost: '#846AB6',
+  Grass: '#71C558',
+  Ground: '#CC9F4F',
+  Ice: '#70CBD4',
+  Normal: '#AAB09F',
+  Poison: '#B468B7',
+  Psychic: '#E5709B',
+  Rock: '#B2A061',
+  Steel: '#89A1B0',
+  Water: '#539AE2'
+}
+
+
+// Reloads the page when clicking the logo
 logo.addEventListener('click', () => {
   location.reload();
 })
@@ -92,12 +115,33 @@ function createPokemon(data, id) {
 
   // Inner Text for Bar Two
   abilityDiv.innerText = `Ability: ${pokemonAbility}`;
-  typeDiv.innerText = pokemonTypeOne;
-  if (data.types[1] != undefined) {
-      let pokemonTypeTwo = data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1).toLowerCase();
-      typeDiv.innerText = `${pokemonTypeOne}/${pokemonTypeTwo}`;
-  }
 
+  // Type Coloring and Assigning
+  let coloredTypeOne = '';
+  let coloredTypeTwo = '';
+  coloredTypeOne = pokemonTypeOne;
+  for (let type in typeObj) {
+    let color = typeObj[type];
+    if (coloredTypeOne.includes(type)) {
+      // coloredTypeOne.fontcolor(color);
+      coloredTypeOne = `<span style='color:${color}'>${coloredTypeOne}</span>`
+    }
+
+    typeDiv.innerHTML = coloredTypeOne;
+    if (data.types[1] != undefined) {
+      let pokemonTypeTwo = data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1).toLowerCase();
+      // coloredTypeTwo = pokemonTypeTwo;
+
+      if (pokemonTypeTwo.includes(type)) {
+        // coloredTypeTwo.fontcolor(color);
+        let colorTwo = typeObj[type];
+        coloredTypeTwo = pokemonTypeTwo;
+        coloredTypeTwo = `<span style='color:${colorTwo}'>${coloredTypeTwo}</span>`
+      }
+      typeDiv.innerHTML = `${coloredTypeOne}/${coloredTypeTwo}`;
+    }
+
+  } 
   // Bar Three
   let barThree = document.createElement('div');
   barThree.classList.add('barThree');
