@@ -11,7 +11,7 @@
     - Cry button
         - On click, returns the Pokemon's original cry from the first generation of Pokemon games from the Game Boy Color!
 
-* Additional features include a search bar, where you type a Pokemon's exact name, and returns its Pokedex entry
+* Additional features include a search bar, where you type a Pokemon's exact name in lowercase, and returns its Pokedex entry
 
 * Clicking the logo reloads the page and brings you back to the top!
 
