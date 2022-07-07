@@ -96,8 +96,8 @@ function createPokemon(data, id) {
 
   // Inner Text for Bar One
   nameDiv.innerText = `#${id} ${pokemonName}`;
-  heightDiv.innerText = `Height: ${pokemonHeight} Kg`;
-  weightDiv.innerText = `Weight: ${pokemonWeight} cm`;
+  heightDiv.innerText = `Height: ${pokemonHeight} cm`;
+  weightDiv.innerText = `Weight: ${pokemonWeight} Kg`;
   
 
   // Bar Two, contains Ability, Types
