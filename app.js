@@ -187,7 +187,7 @@ userForm.addEventListener('submit', (event) => {
   const userInput = input.value;
   const URL = `https://pokeapi.co/api/v2/pokemon/${userInput}`
         
-        
+  // Fetch request to obtain searched data      
   fetch(URL)
     .then(response => response.json())
     .then((newData) => {
