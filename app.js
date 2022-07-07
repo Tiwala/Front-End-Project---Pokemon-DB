@@ -70,6 +70,7 @@ for (let id of idArray) {
 
         cryButton.addEventListener('click', () => {
             let audio = new Audio(`Gen 1 Cries/${id}.flac`);
+            audio.volume = 0.3;
             audio.play();
         })
 
