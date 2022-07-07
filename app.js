@@ -184,7 +184,7 @@ userForm.addEventListener('submit', (event) => {
   document.querySelector('.container').innerHTML = '';
 
   // Constants
-  const userInput = input.value;
+  const userInput = input.value.toLowerCase();
   const URL = `https://pokeapi.co/api/v2/pokemon/${userInput}`
         
   // Fetch request to obtain searched data      
