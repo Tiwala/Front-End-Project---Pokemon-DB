@@ -167,13 +167,14 @@ const idArray = [...Array(151).keys()].map((id) => id + 1);
   let p = Promise.resolve();
   for (let id of idArray) {
     // Makes it such that it forces the current iteration to resolve before moving on
+    // this is a p.then, not just p = p
     p = p
-    .then(() => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`))
-    .then((response) => response.json())
-    .then((data) => {
-        // Default Pokemon List on load
-        createPokemon(data, id);
-
+      .then(() => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`))
+      .then((response) => response.json())
+      .then((data) => {
+          // Default Pokemon List on load
+          createPokemon(data, id);
+      
 
     });
 }
